@@ -1,6 +1,6 @@
 <?php require "database.php" ?>
 
-<?php $contacts = get_contacts(); ?>
+<?php $dye_style_dyes = get_dye_style_dye(); ?>
 
 <!DOCTYPE html>
 <head>
@@ -18,7 +18,7 @@
     <a class="navbar-brand navigation" href="index.php">Fashion CSC 675</a>
 
     <ul class="nav navbar-nav navigation nav-links">
-        <li class="active"><a href="contact.php">Contacts</a></li>
+        <li class="active"><a href="contact.php">Suppliers</a></li>
     </ul>
   </nav>
 
@@ -32,12 +32,10 @@
       </tr>
     </thead>
     <tbody>
-      <?php for($i = 0; $i < sizeof($contacts); $i++) { ?>
+      <?php for($i = 0; $i < sizeof($dye_style_dyes); $i++) { ?>
         <tr>
-          <td><?php echo $contacts[$i]['name']; ?></td>
-          <td><?php echo $contacts[$i]['phone']; ?></td>
-          <td><?php echo $contacts[$i]['email']; ?></td>
-          <td><?php echo $contacts[$i]['job']; ?></td>
+          <td><?php echo $dye_style_dyes[$i]['ds_id']; ?></td>
+          <td><?php echo $dye_style_dyes[$i]['d_id']; ?></td>
         </tr>
       <?php } ?>
     </tbody>
@@ -45,3 +43,5 @@
 
 
 </body>
+
+
