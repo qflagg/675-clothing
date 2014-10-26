@@ -18,17 +18,15 @@
     <a class="navbar-brand navigation" href="index.php">Fashion CSC 675</a>
 
     <ul class="nav navbar-nav navigation nav-links">
-        <li class="active"><a href="contact.php">Suppliers</a></li>
+        <li class="active"><a href="contact.php">Style Photos</a></li>
     </ul>
   </nav>
 
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Job</th>
+        <th>Style ID</th>
+        <th>Photo ID</th>
       </tr>
     </thead>
     <tbody>

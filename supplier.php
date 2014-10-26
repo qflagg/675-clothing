@@ -25,10 +25,8 @@
   <table class="table">
     <thead>
       <tr>
+        <th>Supplier ID</th>
         <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Job</th>
       </tr>
     </thead>
     <tbody>

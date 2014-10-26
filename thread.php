@@ -18,17 +18,19 @@
     <a class="navbar-brand navigation" href="index.php">Fashion CSC 675</a>
 
     <ul class="nav navbar-nav navigation nav-links">
-        <li class="active"><a href="contact.php">Suppliers</a></li>
+        <li class="active"><a href="contact.php">Threads</a></li>
     </ul>
   </nav>
 
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Job</th>
+        <th>Thread ID</th>
+        <th>Description</th>
+        <th>Cost Per Inch</th>
+        <th>Dyables</th>
+        <th>Inches Per Spool</th>
+        <th>Spool</th>
       </tr>
     </thead>
     <tbody>

@@ -18,17 +18,22 @@
     <a class="navbar-brand navigation" href="index.php">Fashion CSC 675</a>
 
     <ul class="nav navbar-nav navigation nav-links">
-        <li class="active"><a href="contact.php">Suppliers</a></li>
+        <li class="active"><a href="contact.php">Material</a></li>
     </ul>
   </nav>
 
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Job</th>
+        <th>Material ID</th>
+        <th>Manufacturer ID</th>
+        <th>Description</th>
+        <th>Color Number</th>
+        <th>Bolt Size</th>
+        <th>Bolt Weight</th>
+        <th>Cost Per Yard</th>
+        <th>Dyeable (True/False)</th>
+        <th>Lead Time</th>
       </tr>
     </thead>
     <tbody>
