@@ -1,8 +1,43 @@
-.navigation {
+thead tr th {
+  font-weight: bold;
+}
+
+.helvetica {
   font-family: helvetica;
   font-weight: 100;
 }
 
 .nav-links {
   float: right;
+}
+
+.header {
+  font-size: 35px;
+  margin-left: 15px;
+}
+
+.left{
+  float: left;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.space {
+  margin-top: 30px;
+}
+
+.garment-info {
+  margin-top: 25px;
+  line-height: 25px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.info {
+  display: inline-block;
+  padding-left: 20px;
 }
