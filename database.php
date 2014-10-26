@@ -101,5 +101,41 @@
 		
 	}
 	
+	function get_fob() {
+		$db = connect_to_pg_server();
+		$query = "SELECT * FROM fob";
+		$result = pg_query($db, $query);
+		if(!$result){
+			echo "Something went wrong";
+		} else {
+			$fob = array();
+			while($myrow = pg_fetch_assoc($result)) {
+				array_push($fob, $myrow);
+			}
+			pg_close($db);
+			return $fob;
+		}
+		
+	}
+	
+	
+	function get_material() {
+		$db = connect_to_pg_server();
+		$query = "SELECT * FROM fob";
+		$result = pg_query($db, $query);
+		if(!$result){
+			echo "Something went wrong";
+		} else {
+			$materials = array();
+			while($myrow = pg_fetch_assoc($result)) {
+				array_push($materials, $myrow);
+			}
+			pg_close($db);
+			return $materials;
+		}
+		
+	}
+	
+	
 	
 ?>
