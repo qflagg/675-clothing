@@ -30,11 +30,16 @@
         <th>Job</th>
       </tr>
     </thead>
-      <?php
-        for($i = 0; $i < $contact.length; $i++) {
-
-        }
-      ?>
+    <tbody>
+      <?php for($i = 0; $i < sizeof($contacts); $i++) { ?>
+        <tr>
+          <td><?php echo $contacts[$i]['name']; ?></td>
+          <td><?php echo $contacts[$i]['phone']; ?></td>
+          <td><?php echo $contacts[$i]['email']; ?></td>
+          <td><?php echo $contacts[$i]['job']; ?></td>
+        </tr>
+      <?php } ?>
+    </tbody>
   </table>
 
 

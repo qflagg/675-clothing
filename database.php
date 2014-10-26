@@ -1,13 +1,13 @@
 <?php
 
-  function all_contacts() {
-    $host = "host=54.84.180.48";
-    $user = "user=qflagg";
-    $password = "password=675775f14";
-    $port = "port=5432";
-    $dbname = "dbname=fashion";
+  define("HOST", "host=54.84.180.48 ");
+  define("USER", "user=qflagg ");
+  define("PASSWORD", "password=675775f14 ");
+  define("PORT", "port=5432 ");
+  define("DBNAME", "dbname=fashion ");
 
-    $db = pg_connect("$host $port $dbname $user $password") or die("Could not connect");
+  function all_contacts() {
+    $db = pg_connect(HOST . USER . PASSWORD . PORT . DBNAME) or die("Could not connect");
     if(!$db) {
       echo "Error: Cannot open database";
     } else {
