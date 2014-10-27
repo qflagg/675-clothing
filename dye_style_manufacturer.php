@@ -27,6 +27,7 @@
       <tr>
         <th>Dye Style ID</th>
         <th>Manufacturer ID</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -34,9 +35,27 @@
         <tr>
           <td><?php echo $dye_style_manufacturers[$i]['ds_id']; ?></td>
           <td><?php echo $dye_style_manufacturers[$i]['man_id']; ?></td>
-
+          <td></td>
         </tr>
       <?php } ?>
+
+      <form action="dye_style_manufacturer.php" method="post">
+        <td>
+          <div class="input-group">
+            <input type="text" class="form-control" name="ds_id" placeholder="ds_id">
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <input type="text" class="form-control" name="man_id" placeholder="man_id">
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <input type="submit" class="btn btn-primary" value=">>">
+          </div>
+        </td>
+      </form>
     </tbody>
   </table>
 

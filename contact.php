@@ -25,21 +25,59 @@
   <table class="table">
     <thead>
       <tr>
+        <th>man_id</th>
         <th>Name</th>
         <th>Phone</th>
         <th>Email</th>
         <th>Job</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <?php for($i = 0; $i < sizeof($contacts); $i++) { ?>
         <tr>
+          <td><?php echo $contacts[$i]['man_id']; ?></td>
           <td><?php echo $contacts[$i]['name']; ?></td>
           <td><?php echo $contacts[$i]['phone']; ?></td>
           <td><?php echo $contacts[$i]['email']; ?></td>
           <td><?php echo $contacts[$i]['job']; ?></td>
+          <td></td>
         </tr>
       <?php } ?>
+      <tr>
+        <form action="contact_add.php" method="post">
+          <td>
+            <div class="input-group">
+              <input type="text" class="form-control" name="man_id" placeholder="man_id">
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="text" class="form-control" name="name" placeholder="Name">
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="text"  class="form-control" name="phone" placeholder="Phone" />
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="text" class="form-control" name="email" placeholder="Email" />
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="text" class="form-control" name="job" placeholder="Job">
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="submit" class="btn btn-primary" value=">>">
+            </div>
+          </td>
+        </form>
+      </tr>
     </tbody>
   </table>
 

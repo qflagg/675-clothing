@@ -29,6 +29,7 @@
         <th>Manufacturer ID</th>
         <th>Charge</th>
         <th>Insurance</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -38,9 +39,38 @@
           <td><?php echo $fob[$i]['man_id']; ?></td>
           <td><?php echo $fob[$i]['charge']; ?></td>
           <td><?php echo $fob[$i]['insurance']; ?></td>
-
+          <td></td>
         </tr>
       <?php } ?>
+      <tr>
+        <form action="fob_add.php" method="post">
+          <td>
+            <div class="input-group">
+              <input type="text" class="form-control" name="sup_id" placeholder="sup_id">
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="text" class="form-control" name="man_id" placeholder="man_id">
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="text"  class="form-control" name="charge" placeholder="charge" />
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="text" class="form-control" name="insurance" placeholder="insurance" />
+            </div>
+          </td>
+          <td>
+            <div class="input-group">
+              <input type="submit" class="btn btn-primary" value=">>">
+            </div>
+          </td>
+        </form>
+      </tr>
     </tbody>
   </table>
 

@@ -29,7 +29,7 @@
         return $contacts;
       }
   }
-		
+
 	function get_suppliers() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM supplier";
@@ -44,11 +44,11 @@
 			pg_close($db);
 			return $suppliers;
 		}
-		
+
 	}
 
-	
-	
+
+
 	function get_threads() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM thread";
@@ -63,10 +63,10 @@
 			pg_close($db);
 			return $threads;
 		}
-		
+
 	}
-	
-	
+
+
 	function get_dye_style_dye() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM dye_style_dye";
@@ -81,9 +81,9 @@
 			pg_close($db);
 			return $dye_style_dyes;
 		}
-		
+
 	}
-	
+
 	function get_dye_style_manufacturer() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM dye_style_manufacturer";
@@ -98,9 +98,9 @@
 			pg_close($db);
 			return $dye_style_manufacturer;
 		}
-		
+
 	}
-	
+
 	function get_fob() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM fob";
@@ -115,10 +115,10 @@
 			pg_close($db);
 			return $fob;
 		}
-		
+
 	}
-	
-	
+
+
 	function get_material() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM material";
@@ -133,9 +133,9 @@
 			pg_close($db);
 			return $materials;
 		}
-		
+
 	}
-	
+
 	function get_photo() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM photo";
@@ -150,9 +150,9 @@
 			pg_close($db);
 			return $photos;
 		}
-		
+
 	}
-	
+
 	function get_notion_photo() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM material_notion_photo";
@@ -167,9 +167,9 @@
 			pg_close($db);
 			return $notion_photos;
 		}
-		
+
 	}
-	
+
 	function get_material_photo() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM material_photo";
@@ -184,9 +184,9 @@
 			pg_close($db);
 			return $material_photos;
 		}
-		
+
 	}
-	
+
 	function get_style_notion() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM Style_notion";
@@ -201,9 +201,9 @@
 			pg_close($db);
 			return $style_notions;
 		}
-		
+
 	}
-	
+
 	function get_style_photo() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM Style_photo";
@@ -218,9 +218,9 @@
 			pg_close($db);
 			return $style_photos;
 		}
-		
+
 	}
-	
+
 	function get_style_piece() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM Style_piece";
@@ -235,10 +235,10 @@
 			pg_close($db);
 			return $style_piece;
 		}
-		
+
 	}
-	
-	
+
+
 	function get_style_processing() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM Style_processing";
@@ -253,9 +253,9 @@
 			pg_close($db);
 			return $style_processing;
 		}
-		
+
 	}
-	
+
 	function get_style_seam() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM Style_Seam";
@@ -270,9 +270,9 @@
 			pg_close($db);
 			return $style_seam;
 		}
-		
+
 	}
-	
+
 	function get_supplier_dye() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM Supplier_dye";
@@ -287,9 +287,9 @@
 			pg_close($db);
 			return $supplier_dye;
 		}
-		
+
 	}
-	
+
 	function get_supplier_notion() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM Supplier_notion";
@@ -304,9 +304,9 @@
 			pg_close($db);
 			return $supplier_notion;
 		}
-		
+
 	}
-	
+
 	function get_thread_seams() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM Thread_Seam";
@@ -321,10 +321,10 @@
 			pg_close($db);
 			return $thread_seam;
 		}
-		
+
 	}
-	
-	
+
+
 	function get_thread_suppliers() {
 		$db = connect_to_pg_server();
 		$query = "SELECT * FROM Thread_Supplier";
@@ -339,8 +339,37 @@
 			pg_close($db);
 			return $thread_supplier;
 		}
-		
+
 	}
-	
-	
+
+  function get_garment_info() {
+    $db = connect_to_pg_server();
+    $query = "SELECT s.name, p.image, m.name, pro.cost, pro.description "
+            ."FROM style s "
+            ."JOIN style_photo sp "
+            ."ON s.style_id = sp.style_id "
+            ."JOIN photo p "
+            ."ON sp.photo_id = p.photo_id "
+            ."JOIN style_manufacturer sm "
+            ."ON s.style_id = sm.style_id "
+            ."JOIN manufacturer m "
+            ."ON sm.man_id = m.man_id "
+            ."JOIN style_processing spro "
+            ."ON s.style_id = spro.style_id "
+            ."JOIN processing pro "
+            ."ON spro.proc_id = pro.proc_id ";
+    $result = pg_query($db, $query);
+    if(!$result){
+      echo "Something went wrong";
+    } else {
+      $garment_info = array();
+      while($myrow = pg_fetch_assoc($result)) {
+        array_push($garment_info, $myrow);
+      }
+      pg_close($db);
+      return $garment_info;
+    }
+  }
+
+
 ?>
