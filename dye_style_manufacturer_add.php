@@ -21,7 +21,7 @@
     if(!$result) {
       echo "Something went wrong";
     } else {
-      header('Location: http://localhost:8888/clothing-675/dye_style_manufacturer.php');
+      header('Location: https://tranquil-peak-5616.herokuapp.com/dye_style_manufacturer.php');
     }
   }
 

@@ -23,7 +23,7 @@
     if(!$result) {
       echo "Something went wrong";
     } else {
-      header('Location: http://localhost:8888/clothing-675/contact.php');
+      header('Location: https://tranquil-peak-5616.herokuapp.com/contact.php');
     }
   }
 
