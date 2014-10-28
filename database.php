@@ -66,6 +66,23 @@
 
 	}
 
+	function get_dye_style() {
+		$db = connect_to_pg_server();
+		$query = "SELECT * FROM dye_style";
+		$result = pg_query($db, $query);
+		if(!$result){
+			echo "Something went wrong";
+		} else {
+			$dye_style = array();
+			while($myrow = pg_fetch_assoc($result)) {
+				array_push($dye_style, $myrow);
+			}
+			pg_close($db);
+			return $dye_style;
+		}
+
+	}
+
 
 	function get_dye_style_dye() {
 		$db = connect_to_pg_server();
@@ -342,34 +359,119 @@
 
 	}
 
-  function get_garment_info() {
-    $db = connect_to_pg_server();
-    $query = "SELECT s.name, p.image, m.name, pro.cost, pro.description "
-            ."FROM style s "
-            ."JOIN style_photo sp "
-            ."ON s.style_id = sp.style_id "
-            ."JOIN photo p "
-            ."ON sp.photo_id = p.photo_id "
-            ."JOIN style_manufacturer sm "
-            ."ON s.style_id = sm.style_id "
-            ."JOIN manufacturer m "
-            ."ON sm.man_id = m.man_id "
-            ."JOIN style_processing spro "
-            ."ON s.style_id = spro.style_id "
-            ."JOIN processing pro "
-            ."ON spro.proc_id = pro.proc_id ";
-    $result = pg_query($db, $query);
-    if(!$result){
+  function get_garment_info($id) {
+		$garment_info = array();
+
+    $name = "SELECT name FROM style WHERE style_id = $id;";
+		$garment_info = quick_query($name, $garment_info);
+
+		$style_image = "select p.image "
+									."from style_photo sp, photo p "
+									."where sp.style_id = $id "
+									."and sp.photo_id = p.photo_id" ;
+		$garment_info = quick_query($style_image, $garment_info);
+
+		$dye_image = "SELECT d.image FROM dye d, dye_style_dye dsd, dye_style ds, style_dye_style sds "
+								."WHERE sds.style_id = $id "
+								."AND sds.ds_id = ds.ds_id "
+								."AND ds.ds_id = dsd.ds_id "
+								."AND dsd.d_id = d.d_id";
+		$garment_info = quick_query($dye_image, $garment_info);
+
+		$dye_style_image = "select ds.image "
+											."from dye_style ds, style_dye_style sds "
+											."where sds.style_id = $id "
+											."and sds.ds_id = ds.ds_id";
+		$garment_info = quick_query($dye_style_image, $garment_info);
+
+
+		$thread_image =  "select t.image "
+										."from thread t, thread_seam ts, seam s, style_seam ss "
+										."where ss.style_id = $id "
+										."and ss.seam_id = s.seam_id "
+										."and s.seam_id = ts.seam_id "
+										."and ts.t_id = t.t_id ";
+		$garment_info = quick_query($thread_image, $garment_info);
+
+		$notion_image = "select n.image "
+									 ."from notion n, style_notion sn "
+									 ."where sn.style_id = $id "
+									 ."and sn.n_id = n.n_id ";
+		$garment_info = quick_query($notion_image, $garment_info);
+
+		$material =  "select m.image, m.description "
+								."from material m, piece_material pm, piece p, style_piece sp "
+								."where sp.style_id = $id "
+								."and sp.p_id = p.p_id "
+								."and p.p_id = pm.p_id "
+								."and pm.material_id = m.material_id";
+		$garment_info = quick_query($material, $garment_info);
+
+		$pattern_image = "select pa.image "
+										."from pattern pa, piece_pattern ppa, piece p, style_piece sp "
+										."where sp.style_id = $id "
+										."and sp.p_id = p.p_id "
+										."and p.p_id = ppa.p_id "
+										."and ppa.pattern_id = pa.pattern_id";
+		$garment_info = quick_query($pattern_image, $garment_info);
+
+		$manufacturer_name = "select m.name "
+												."from manufacturer m, style_manufacturer sm "
+												."where sm.style_id = $id "
+												."and sm.man_id = m.man_id";
+		$garment_info = quick_query($manufacturer_name, $garment_info);
+
+		$seam_description = "select s.description "
+											 ."from seam s, style_seam ss "
+											 ."where ss.style_id = $id "
+											 ."and ss.seam_id = s.seam_id";
+		$garment_info = quick_query($seam_description, $garment_info);
+
+		return $garment_info;
+
+
+
+
+  }
+
+	function get_styles() {
+		$db = connect_to_pg_server();
+		$query =  "SELECT s.style_id, s.name, p.image "
+						 ."FROM style s, style_photo sp, photo p "
+						 ."WHERE s.style_id = sp.style_id "
+						 ."AND sp.photo_id = p.photo_id";
+		$result = pg_query($db, $query);
+		if(!$result){
+			echo "Something went wrong";
+		} else {
+			$thread_supplier = array();
+			while($myrow = pg_fetch_assoc($result)) {
+				array_push($thread_supplier, $myrow);
+			}
+			pg_close($db);
+			return $thread_supplier;
+		}
+
+	}
+
+	function quick_query($query, $info) {
+		$db = connect_to_pg_server();
+		$result = pg_query($db, $query);
+		if(!$result){
       echo "Something went wrong";
     } else {
-      $garment_info = array();
-      while($myrow = pg_fetch_assoc($result)) {
-        array_push($garment_info, $myrow);
+			$temp = array();
+      while($myrow = pg_fetch_row($result)) {
+        array_push($temp, $myrow[0]);
+				if($myrow[1]) {
+					array_push($temp, $myrow[1]);
+				}
       }
       pg_close($db);
-      return $garment_info;
+			array_push($info, $temp);
+      return $info;
     }
-  }
+	}
 
 
 ?>

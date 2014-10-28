@@ -103,7 +103,7 @@
           </td>
           <td>
             <div class="input-group">
-              <input type="text" class="form-control" name="image" placeholder="image">
+              <input type="text" class="form-control" name="image" placeholder="image url">
             </div>
           </td>
           <td>
